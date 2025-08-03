@@ -1,0 +1,546 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  # Increase this value if you'd like to automatically spin up
+  # more instances in response to increased traffic.
+  maxInstances: 1
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.darz.wallet',
+  appName: 'DAR Z',
+  webDir: 'out',
+  bundledWebRuntime: false,
+  server: {
+    // This is needed for local development with live-reload
+    // Use your machine's IP address to test on a real device
+    // url: 'http://192.168.1.10:3000', 
+    cleartext: true
+  }
+};
+
+export default config;
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "src/app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide"
+}
+import type {NextConfig} from 'next';
+
+const nextConfig: NextConfig = {
+  /* config options here */
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+};
+
+export default nextConfig;
+{
+  "name": "nextn",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack -p 9002",
+    "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
+    "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/core": "^6.1.0",
+    "@genkit-ai/googleai": "^1.14.1",
+    "@genkit-ai/next": "^1.14.1",
+    "@hookform/resolvers": "^4.1.3",
+    "@radix-ui/react-accordion": "^1.2.3",
+    "@radix-ui/react-alert-dialog": "^1.1.6",
+    "@radix-ui/react-avatar": "^1.1.3",
+    "@radix-ui/react-checkbox": "^1.1.4",
+    "@radix-ui/react-collapsible": "^1.1.11",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-menubar": "^1.1.6",
+    "@radix-ui/react-popover": "^1.1.6",
+    "@radix-ui/react-progress": "^1.1.2",
+    "@radix-ui/react-radio-group": "^1.2.3",
+    "@radix-ui/react-scroll-area": "^1.2.3",
+    "@radix-ui/react-select": "^2.1.6",
+    "@radix-ui/react-separator": "^1.1.2",
+    "@radix-ui/react-slider": "^1.2.3",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.1.3",
+    "@radix-ui/react-tabs": "^1.1.3",
+    "@radix-ui/react-toast": "^1.2.6",
+    "@radix-ui/react-tooltip": "^1.1.8",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.5.0",
+    "embla-carousel-react": "^8.6.0",
+    "firebase": "^11.9.1",
+    "genkit": "^1.14.1",
+    "lucide-react": "^0.475.0",
+    "next": "15.3.3",
+    "patch-package": "^8.0.0",
+    "react": "^18.3.1",
+    "react-day-picker": "^8.10.1",
+    "react-dom": "^18.3.1",
+    "react-firebase-hooks": "^5.1.1",
+    "react-hook-form": "^7.54.2",
+    "recharts": "^2.15.1",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "genkit-cli": "^1.14.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
+// Flows will be imported for their side effects in this file.
+import {genkit} from 'genkit';
+import {googleAI} from '@genkit-ai/googleai';
+
+export const ai = genkit({
+  plugins: [googleAI()],
+  model: 'googleai/gemini-2.0-flash',
+});
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 141 53% 55%;
+    --primary-foreground: 141 53% 10%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 215 20.7% 65.1%;
+    --accent: 219 79% 66%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 141 53% 55%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 141 53% 55%;
+    --primary-foreground: 141 53% 10%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 215 20.7% 65.1%;
+    --accent: 219 79% 66%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 141 53% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}import type { Metadata } from 'next';
+import { Poppins, PT_Sans } from 'next/font/google';
+import './globals.css';
+import { cn } from '@/lib/utils';
+import { Toaster } from "@/components/ui/toaster"
+
+const fontPoppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-headline',
+});
+
+const fontPTSans = PT_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-body',
+});
+
+export const metadata: Metadata = {
+  title: 'DAR Z Wallet',
+  description: 'فخر الشرق الأوسط. بإشراف المؤسس محمد الصميدعي',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="ar" dir="rtl" className="dark">
+      <body
+        className={cn(
+          'min-h-screen bg-background font-body antialiased',
+          fontPoppins.variable,
+          fontPTSans.variable
+        )}
+      >
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  );
+}
+
+"use client";
+
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Logo } from '@/components/icons';
+import { ArrowRight, CandlestickChart, Lock, Wallet } from 'lucide-react';
+import Image from 'next/image';
+
+export default function HomePage() {
+  const flags = [
+    { src: 'https://flagcdn.com/w40/iq.png', alt: 'Iraq Flag' },
+    { src: 'https://flagcdn.com/w40/de.png', alt: 'Germany Flag' },
+    { src: 'https://flagcdn.com/w40/us.png', alt: 'USA Flag' },
+    { src: 'https://flagcdn.com/w40/sa.png', alt: 'Saudi Arabia Flag' },
+    { src: 'https://flagcdn.com/w40/ae.png', alt: 'UAE Flag' },
+  ];
+
+  return (
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      {/* Header */}
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center">
+          <Link href="/" className="flex items-center gap-2 font-semibold">
+            <Logo className="h-6 w-6 text-primary" />
+            <span className="font-headline hidden md:inline-block">DAR Z</span>
+          </Link>
+          <div className="ms-auto flex items-center gap-2">
+            <Button variant="ghost" asChild>
+                <Link href="/login">تسجيل الدخول</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/signup">
+                ابدأ الآن <ArrowRight className="me-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </header>
+      
+      {/* Hero Section */}
+      <main className="flex-1">
+        <section className="relative py-20 md:py-32">
+           <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+              style={{ backgroundImage: "url('https://placehold.co/1920x1080/0d0221/a855f7.png?text=.')" }}
+              data-ai-hint="crypto background"
+            ></div>
+          <div className="container relative text-center">
+            <h1 className="text-4xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
+              DAR Z: بوابتك لعالم المال الرقمي
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+              منصة تداول آمنة وموثوقة في قلب الشرق الأوسط، مصممة لتمكينك من تحقيق أهدافك المالية بكل سهولة وثقة.
+            </p>
+             <p className="mt-4 text-xl text-muted-foreground">
+                المؤسس: <span className="font-bold text-3xl text-primary">محمد مال الله الصميدعي</span>
+             </p>
+            <div className="mt-8 flex justify-center gap-4">
+               <Button size="lg" asChild>
+                 <Link href="/signup">
+                    إنشاء حساب مجاني
+                 </Link>
+               </Button>
+                <Button size="lg" variant="outline" asChild>
+                 <Link href="/markets">
+                    استكشف الأسواق
+                 </Link>
+               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-20 bg-secondary/20">
+            <div className="container">
+                <div className="text-center mb-12">
+                     <h2 className="text-3xl font-bold font-headline">لماذا تختار DAR Z؟</h2>
+                     <p className="text-muted-foreground mt-2">نقدم لك الأدوات التي تحتاجها للنجاح في عالم العملات الرقمية.</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-8">
+                    <div className="flex flex-col items-center text-center p-6 border rounded-lg bg-card">
+                        <div className="p-3 bg-primary/10 rounded-full mb-4">
+                            <Lock className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="text-xl font-bold font-headline mb-2">أمان من الطراز العالمي</h3>
+                        <p className="text-muted-foreground">نستخدم أحدث تقنيات التشفير لحماية أصولك وبياناتك على مدار الساعة.</p>
+                    </div>
+                     <div className="flex flex-col items-center text-center p-6 border rounded-lg bg-card">
+                        <div className="p-3 bg-primary/10 rounded-full mb-4">
+                            <CandlestickChart className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="text-xl font-bold font-headline mb-2">تجربة تداول متقدمة</h3>
+                        <p className="text-muted-foreground">أدوات تحليل فني ورسوم بيانية مباشرة لمساعدتك على اتخاذ قرارات مستنيرة.</p>
+                    </div>
+                     <div className="flex flex-col items-center text-center p-6 border rounded-lg bg-card">
+                        <div className="p-3 bg-primary/10 rounded-full mb-4">
+                           <Wallet className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="text-xl font-bold font-headline mb-2">إيداع وسحب مرن</h3>
+                        <p className="text-muted-foreground">خيارات متعددة للإيداع والسحب بما في ذلك التحويلات البنكية والمحافظ الرقمية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+       <footer className="border-t">
+        <div className="container flex flex-col items-center justify-between gap-6 py-10 text-center">
+            <div className="flex justify-center gap-4">
+              {flags.map((flag, index) => (
+                <Image
+                  key={index}
+                  src={flag.src}
+                  alt={flag.alt}
+                  width={30}
+                  height={20}
+                  className="rounded-sm"
+                  data-ai-hint="country flag"
+                />
+              ))}
+            </div>
+            <p className="text-sm text-muted-foreground">تم التأسيس سنة 2025</p>
+            <p className="text-sm text-muted-foreground">
+              جميع حقوق الطبع والنشر والتأسيس محفوظة لدى (<strong className="font-headline text-base">محمد مال الله الصميدعي</strong>).
+            </p>
+          </div>
+      </footer>
+    </div>
+  );
+}
+import Link from 'next/link';
+import { Logo } from '@/components/icons';
+import { LoginForm } from '@/components/login-form';
+
+export default function LoginPage() {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+            <Link href="/" className="inline-block">
+                <Logo className="h-12 w-auto mx-auto text-primary" />
+            </Link>
+          <h1 className="mt-6 text-3xl font-bold tracking-tight font-headline">
+            تسجيل الدخول إلى حسابك
+          </h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            مرحباً بعودتك! الرجاء إدخال بياناتك للمتابعة.
+          </p>
+        </div>
+        <LoginForm />
+        <p className="mt-10 text-center text-sm text-muted-foreground">
+          ليس لديك حساب؟{' '}
+          <Link href="/signup" className="font-medium text-primary hover:underline">
+            إنشاء حساب جديد
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+import Link from 'next/link';
+import { Logo } from '@/components/icons';
+import { SignupForm } from '@/components/signup-form';
+
+export default function SignupPage() {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+          <Link href="/" className="inline-block">
+            <Logo className="h-12 w-auto mx-auto text-primary" />
+          </Link>
+          <h1 className="mt-6 text-3xl font-bold tracking-tight font-headline">
+            إنشاء حساب جديد
+          </h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            أدخل بياناتك لتبدأ رحلتك معنا.
+          </p>
+        </div>
+        <SignupForm />
+        <p className="mt-10 text-center text-sm text-muted-foreground">
+          هل لديك حساب بالفعل؟{' '}
+          <Link href="/login" className="font-medium text-primary hover:underline">
+            تسجيل الدخول
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
+"use client";
+
+import { MainNav } from "@/components/main-nav";
+import { UserNav, SupportNav } from "@/components/user-nav";
+import { Logo } from "@/components/icons";
+import Link from "next/link";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/lib/firebase';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { Loader2 } from 'lucide-react';
+
+export default function AppLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [user, loading, error] = useAuthState(auth);
+  const router = useRouter();
+  const [isRedirecting, setIsRedirecting] = useState(true);
+
+  useEffect(() => {
+    // If loading has finished
+    if (!loading) {
+      // And there's no user
+      if (!user) {
+        // Redirect to login page
+        router.push('/login');
+      } else {
+        // If user is logged in, stop showing the loader
+        setIsRedirecting(false);
+      }
+    }
+  }, [user, loading, router]);
+
+  // While firebase auth state is loading or we are waiting to redirect, show a loader
+  if (loading || isRedirecting) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="h-16 w-16 animate-spin text-primary" />
+      </div>
+    );
+  }
+  
+  // This should only be reached if the user is authenticated and we are not redirecting.
+  // The check for user is an extra safeguard.
+  if (user) {
+    return (
+      <div className="flex min-h-screen w-full flex-col">
+        <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 z-50">
+          <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
+            <Logo className="h-6 w-6 text-primary" />
+            <span className="font-headline hidden md:inline-block">DAR Z</span>
+          </Link>
+          <div className="ms-auto flex items-center gap-4">
+            <UserNav />
+             <SupportNav />
+          </div>
+        </header>
+        <div className="flex flex-1">
+          <aside className="hidden border-s w-64 bg-background md:block">
+              <MainNav />
+          </aside>
+          <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 bg-secondary/20">
+              {children}
+          </main>
+        </div>
+      </div>
+    );
+  }
+
+  // Fallback in case user is null but we are not loading or redirecting (should not happen)
+  return null;
+}
+"use client";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MoreHorizontal, Ban, Trash2, DollarSign, Users, Activity, ArrowUp, ArrowDown, TrendingUp, Loader2, CheckCircle2 } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { useToast } from "@/hooks/use-toast";
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { collection, query, where, doc, write
