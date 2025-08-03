@@ -1,2 +1,2 @@
 # Z-DAR-Z
-Gugg
+/*    /index.html    200
